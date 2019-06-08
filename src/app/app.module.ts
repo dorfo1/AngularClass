@@ -14,6 +14,9 @@ import { HeaderComponent } from './components/Header/Header.component';
 import {UserListPage} from './pages/UserList/UserList.page';
 import {UserComponent} from './pages/User/User.page';
 import {LoadingComponent} from './components/Loading/Loading.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import {LoadingComponent} from './components/Loading/Loading.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule, 
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

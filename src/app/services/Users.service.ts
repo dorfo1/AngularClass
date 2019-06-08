@@ -11,6 +11,10 @@ export class UsersService {
     return this.db.collection('users', ref=> ref.where('id', '==', id)).snapshotChanges()
   }
 
+  getAllUsers(){
+    return this.db.collection('users').snapshotChanges()
+  }
+
   create(data) {
     console.log(data);
 
@@ -20,5 +24,9 @@ export class UsersService {
       id:uuid(),
       ...data,
     });
+  }
+
+  update(id,data){
+    return this.db.collection('users').doc(id).set(data)
   }
 }

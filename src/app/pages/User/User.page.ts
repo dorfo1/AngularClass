@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
 
 import { UsersService } from "../../services/Users.service";
-import { ActivatedRoute } from "@angular/router";
-import { FormGroup,FormControl, Validators} from '@angular/forms'
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormGroup,FormControl, Validators, ControlContainer} from '@angular/forms'
+
 
 @Component({
   selector: "user-component",
@@ -18,9 +19,10 @@ export class UserComponent {
   })
 
   private userId : string = '';
+  private userKey : string ="";
   private loading : boolean = false;
 
-  constructor(private usersService: UsersService, private route: ActivatedRoute) {}
+  constructor(private usersService: UsersService, private route: ActivatedRoute ,private router : Router) {}
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get("id");
@@ -30,24 +32,32 @@ export class UserComponent {
   private getUser(id: string) {
     if(id !== null){
       this.usersService.getById(id).subscribe((data:any) =>{
-       // this.data = data[0].payload.doc.data();
-        //  console.log(this.data)
-        })
+        this.userKey = data[0].payload.doc.id
+        const result = data[0].payload.doc.data();
+        console.log(result.age)
+        Object.keys(result)
+        .filter(item => item !== 'id')
+        .forEach(item => {
+          this.userForm.controls[item].setValue(result[item])
+          this.loading=false
+        });
+      })
     }
     
   }
 
-  createUser() {
+  onSubmit() {
     console.log("click")
-    this.usersService
+    if(this.userId){
+      const data = {...this.userForm.value,id:this.userId}
+      this.usersService.update(this.userKey,data)
+        .then(() => this.router.navigate(['/']))
+        .catch(error => console.log(error))
+    }else{
+      this.usersService
       .create(this.userForm.value)
-      .then(() => {
-        this.loading = false;
-      })
+      .then(() => this.router.navigate(['/']))
       .catch(err => (this.loading = false));
-    return;
-    this.loading = true;
-    console.log("criado");
-    
+    }
   }
 }

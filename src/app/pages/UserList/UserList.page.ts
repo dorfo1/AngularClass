@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { UsersService } from "../../services/Users.service";
+
 
 @Component({
   selector: "user-list",
@@ -6,8 +8,27 @@ import { Component } from "@angular/core";
   styleUrls: ["./UserList.page.css"]
 })
 export class UserListPage {
-  private results = [
-    { id: 1, name: "Leandre", email: "leandre@gmail.com" },
-    { id: 2, name: "Joao", email: "joao@gmail.com" }
-  ];
+  
+  private users = []
+
+  constructor(private usersService :UsersService){
+  }
+
+  ngOnInit(){
+    this.getUsers();
+  }
+
+
+  private getUsers(){
+    this.usersService.getAllUsers().subscribe((data:any) =>{
+      data.forEach(item => {
+        this.users.push(item.payload.doc.data())
+      });
+      console.log(this.users)
+    })
+  
+  }
+
+  
+
 }
