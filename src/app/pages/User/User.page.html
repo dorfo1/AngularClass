@@ -1,14 +1,19 @@
 <div>
   <loading-component [show]="loading" ></loading-component>
 
-  <input
-    type="text"
-    name="name"
-    (change)="setValue($event)"
-  />
+  <form [formGroup]="userForm" (ngSubmit)="createUser()" >
+    <input type="text" placeholder="Nome" name="name" formControlName="name">
+    <input type="email" placeholder="Email" name="email" formControlName="email">
+    <input type="number" placeholder="Idade" name="age" formControlName="age">
+    <input type="tel" placeholder="Telefone" name="phone" formControlName="phone">
 
-  <button (click)="createUser()">
+    <div *ngIf="userForm.controls.name.invalid && userForm.controls.touched">campo é obrigatorio</div>
+  <button type="submit" [disabled]="!userForm.valid">
     Criar Usuario
   </button>
+  
+  </form>
+
+
   
 </div>

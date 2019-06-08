@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'
+import {ReactiveFormsModule} from '@angular/forms'
 
 
 import { AngularFireModule } from '@angular/fire';
@@ -29,6 +30,7 @@ import {LoadingComponent} from './components/Loading/Loading.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
