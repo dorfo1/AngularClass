@@ -1,6 +1,14 @@
 <div>
   <loading-component [show]="loading" ></loading-component>
+
+  <input
+    type="text"
+    name="name"
+    (change)="setValue($event)"
+  />
+
   <button (click)="createUser()">
     Criar Usuario
   </button>
+  
 </div>

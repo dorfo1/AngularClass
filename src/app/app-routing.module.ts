@@ -6,6 +6,7 @@ import { UserComponent } from "./pages/User/User.page";
 
 const routes: Routes = [
   { path: "", component: UserListPage },
+  { path: "user", component: UserComponent},
   { path: "user/:id", component: UserComponent }
 ];
 

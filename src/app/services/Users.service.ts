@@ -8,7 +8,7 @@ export class UsersService {
   constructor(private http: HttpClient, private db: AngularFirestore) {}
 
   getById(id: string){
-    return this.db.collection('users', ref=> ref.where('id', '==', id))
+    return this.db.collection('users', ref=> ref.where('id', '==', id)).snapshotChanges()
   }
 
   create(data) {
