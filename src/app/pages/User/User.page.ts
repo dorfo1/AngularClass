@@ -18,9 +18,9 @@ export class UserComponent {
     phone:new FormControl('',Validators.required)
   })
 
-  private userId : string = '';
+  public userId : string = '';
   private userKey : string ="";
-  private loading : boolean = false;
+  public loading : boolean = false;
 
   constructor(private usersService: UsersService, private route: ActivatedRoute ,private router : Router) {}
 

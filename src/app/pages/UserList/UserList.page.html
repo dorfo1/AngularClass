@@ -1,11 +1,24 @@
 <div>
+
+    <input 
+    type="text" 
+    name="filter"
+    placeholder="Busque nome do usuário"
+    (keyup) ="setFilterBy($event)"/>
+
     <ul>
-      
-      <li *ngFor='let item of users'>
+      <li *ngFor='let item of users | filter: filterBy | order: orderBy'>
         <a routerLink="user/{{item.id}}" routerLinkActive="active">
         Nome : {{item.name}}
-        Email {{item.email}}
+        Email : {{item.email}}
+        Idade : {{item.age}}
         </a>
       </li>
     </ul>
+
+    <select (change)="onSelectChange($event.target.value)">
+      <option value="0">Selecione o tipo do filtro</option>
+      <option value="1">Nome</option>
+      <option value="2">Idade</option>
+    </select>
 </div>

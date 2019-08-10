@@ -9,7 +9,9 @@ import { UsersService } from "../../services/Users.service";
 })
 export class UserListPage {
   
-  private users = []
+  public users = [];
+  private filterBy: string = "";
+  private orderBy: number;
 
   constructor(private usersService :UsersService){
   }
@@ -26,9 +28,14 @@ export class UserListPage {
       });
       console.log(this.users)
     })
-  
   }
 
-  
+  setFilterBy(event : any){
+    this.filterBy = event.target.value
+  }
+
+  onSelectChange(valor: number){
+      this.orderBy = valor;
+  }
 
 }
