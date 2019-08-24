@@ -3,11 +3,13 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { UserListPage } from "./pages/UserList/UserList.page";
 import { UserComponent } from "./pages/User/User.page";
+import { AuthComponent } from "./pages/Auth/Auth.page";
 
 const routes: Routes = [
   { path: "", component: UserListPage },
   { path: "user", component: UserComponent},
-  { path: "user/:id", component: UserComponent }
+  { path: "user/:id", component: UserComponent },
+  { path: "auth", component: AuthComponent}
 ];
 
 @NgModule({

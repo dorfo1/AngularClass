@@ -1,24 +1,40 @@
 <div>
 
-    <input 
-    type="text" 
-    name="filter"
-    placeholder="Busque nome do usuário"
-    (keyup) ="setFilterBy($event)"/>
+  <div class="filtros">
 
-    <ul>
-      <li *ngFor='let item of users | filter: filterBy | order: orderBy'>
-        <a routerLink="user/{{item.id}}" routerLinkActive="active">
-        Nome : {{item.name}}
-        Email : {{item.email}}
-        Idade : {{item.age}}
-        </a>
-      </li>
-    </ul>
+      <label for="filter">Buscar por nome: </label>
 
-    <select (change)="onSelectChange($event.target.value)">
-      <option value="0">Selecione o tipo do filtro</option>
-      <option value="1">Nome</option>
-      <option value="2">Idade</option>
-    </select>
+      <input 
+      type="text" 
+      name="filter"
+      placeholder="Busque nome do usuário"
+      (keyup) ="setFilterBy($event)"/>
+  
+      <label for="filter">Filtrar por: </label>
+  
+      <select (change)="onSelectChange($event.target.value)">
+        <option value="0">Selecione o tipo do filtro</option>
+        <option value="1">Nome</option>
+        <option value="2">Idade</option>
+      </select>
+  
+  </div>
+
+   
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Idade</th>
+          <th>CPF</th>
+          <th>Endereço</th>
+          <th>Remover</th>
+        </tr>
+        </thead>
+        <tr *ngFor='let item of users | filter: filterBy | order: orderBy'>
+            <td><a routerLink="user/{{item.id}}" routerLinkActive="active">{{item.name}}</a></td>
+            <td>{{item.email}}</td>
+            <td>{{item.age}}</td>
+     </table>
 </div>

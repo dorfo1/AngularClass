@@ -12,12 +12,14 @@ import { environment } from '../environments/environment';
 import {FilterPipe} from './pipes/filter.pipe';
 import {OrderPipe} from './pipes/order.pipe';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/Header/Header.component';
 import {UserListPage} from './pages/UserList/UserList.page';
 import {UserComponent} from './pages/User/User.page';
+import {AuthComponent} from './pages/Auth/Auth.page';
 import {LoadingComponent} from './components/Loading/Loading.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
@@ -32,7 +34,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HeaderComponent,
     UserListPage,
     UserComponent,
-    LoadingComponent
+    LoadingComponent,
+    AuthComponent
 
   ],
   imports: [
@@ -44,6 +47,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule, 
+    NgbModule,
     MatCheckboxModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
