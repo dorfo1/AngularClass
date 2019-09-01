@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { UsersService } from "../../services/Users.service";
+import { AuthService } from "../../services/Auth.service";
 
 
 @Component({
@@ -8,34 +9,47 @@ import { UsersService } from "../../services/Users.service";
   styleUrls: ["./UserList.page.css"]
 })
 export class UserListPage {
-  
+
   public users = [];
-  private filterBy: string = "";
-  private orderBy: number;
+  public filterBy: string = "";
+  public orderBy: number;
 
-  constructor(private usersService :UsersService){
+  constructor(private usersService: UsersService, private authService: AuthService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getUsers();
+
   }
 
 
-  private getUsers(){
-    this.usersService.getAllUsers().subscribe((data:any) =>{
+  private getUsers() {
+    this.usersService.getAllUsers().subscribe((data: any) => {
       data.forEach(item => {
-        this.users.push(item.payload.doc.data())
+        console.log(item.payload.doc.data());
+        let cliente = item.payload.doc.data();
+        cliente.firebaseId = item.payload.doc.id;
+        this.users.push(cliente)
       });
-      console.log(this.users)
     })
+
   }
 
-  setFilterBy(event : any){
+  onLogout() {
+    this.authService.logout();
+  }
+
+  onRemover(uuid: string) {
+    this.usersService.remove(uuid)
+    this.users = [];
+  }
+
+  setFilterBy(event: any) {
     this.filterBy = event.target.value
   }
 
-  onSelectChange(valor: number){
-      this.orderBy = valor;
+  onSelectChange(valor: number) {
+    this.orderBy = valor;
   }
 
 }

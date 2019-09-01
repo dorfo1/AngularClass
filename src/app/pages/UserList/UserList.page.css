@@ -1,18 +1,60 @@
-#customers tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  width:100vw;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: rgb(175, 76, 76);
-  color: white;
+h2{
+  text-align: center;
 }
 
+.container1{
+  width: 100vw;
+}
+
+.logout-icon{
+  position: absolute;
+  right: 20px;
+}
+
+.myNav{
+  color: white;
+  display: flex;
+  width: 100vw;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .filtros{
+    padding: 20px;
+    text-align: center;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:20px;
+	right:20px;
+	background-color:darkslategrey;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  box-shadow: 2px 2px 3px #999;
+  text-decoration: none
+}
+
+
+
+.btn-float{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#FAB{
+  font-size: 2.5rem;
+  font-weight: 500;
 }

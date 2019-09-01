@@ -1,40 +1,57 @@
-<div>
+<div class="container1">
+
+  <nav class="myNav bg-dark">
+    <h3>Projeto Angular</h3>
+    <img class="logout-icon" src="../../../assets//icons/baseline_exit_to_app_white_18dp.png" alt="logout"
+      (click)="onLogout()">
+  </nav>
+
+
 
   <div class="filtros">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">🔎</span>
+      </div>
+      <input type="text" name="filter" placeholder="Busque nome do usuário" class="form-control"
+        (keyup)="setFilterBy($event)" />
+    </div>
 
-      <label for="filter">Buscar por nome: </label>
 
-      <input 
-      type="text" 
-      name="filter"
-      placeholder="Busque nome do usuário"
-      (keyup) ="setFilterBy($event)"/>
-  
-      <label for="filter">Filtrar por: </label>
-  
-      <select (change)="onSelectChange($event.target.value)">
-        <option value="0">Selecione o tipo do filtro</option>
-        <option value="1">Nome</option>
-        <option value="2">Idade</option>
-      </select>
-  
+
+    <select (change)="onSelectChange($event.target.value)">
+      <option value="0">Selecione o tipo do filtro</option>
+      <option value="1">Nome</option>
+      <option value="2">Idade</option>
+    </select>
+
   </div>
 
-   
+  <div class="table-responsive-sm">
     <table class="table">
-        <thead class="thead-dark">
+      <thead class="thead-dark">
         <tr>
           <th>Nome</th>
           <th>Email</th>
           <th>Idade</th>
-          <th>CPF</th>
-          <th>Endereço</th>
           <th>Remover</th>
         </tr>
-        </thead>
-        <tr *ngFor='let item of users | filter: filterBy | order: orderBy'>
-            <td><a routerLink="user/{{item.id}}" routerLinkActive="active">{{item.name}}</a></td>
-            <td>{{item.email}}</td>
-            <td>{{item.age}}</td>
-     </table>
+      </thead>
+      <tr *ngFor='let item of users | filter: filterBy | order: orderBy'>
+        <td><a routerLink="user/{{item.id}}" routerLinkActive="active">{{item.name}}</a></td>
+        <td>{{item.email}}</td>
+        <td>{{item.age}}</td>
+        <td><button class="btn-danger btn-sm btn" (click)="onRemover(item.firebaseId)">Remover</button></td>
+
+    </table>
+  </div>
+
+
+
+  <a routerLink="user" routerLinkActive="active" class="float">
+    <div class="btn-float">
+      <h6 id="FAB">+</h6>
+    </div>
+  </a>
+
 </div>

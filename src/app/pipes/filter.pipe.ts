@@ -1,19 +1,23 @@
-import { Pipe,PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
+import { filter } from 'minimatch';
 
 @Pipe({
-    name:'filter',
+    name: 'filter',
 
 })
 
-export class FilterPipe implements PipeTransform{
+export class FilterPipe implements PipeTransform {
 
-    transform(items: any,filterBy: string) {
+    transform(items: any, filterBy: string) {
         console.log(filterBy);
         let list = []
-        items.map(item=> item.name.includes(filterBy) ? list.push(item) : null);
-        if(list.length>0){
+        items.map(item => {
+            let nome = item.name.toLowerCase();
+            nome.includes(filterBy.toLowerCase()) ? list.push(item) : null
+        });
+        if (list.length > 0 || filterBy.length > 0) {
             return list
-        }else{
+        } else {
             return items
         }
     }

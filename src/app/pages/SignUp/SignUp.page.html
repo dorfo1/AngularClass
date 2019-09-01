@@ -4,13 +4,12 @@
 
 
   <div class="wrapper">
-    <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="form-signin">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="form-signin">
       <h2 class="form-signin-heading">Cadastre-se</h2>
-      <input type="email" class="form-control" formControlName="email" name="email" placeholder="Email" required
-        autofocus="" />
+      <input type="text" class="form-control" formControlName="nome" name="nome" placeholder="Nome" required
+        autofocus />
+      <input type="email" class="form-control" formControlName="email" name="email" placeholder="Email" required />
       <input type="password" class="form-control" formControlName="senha" placeholder="Senha" required />
       <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
     </form>
   </div>
-
-  <a routerLink="../signup" routerLinkActive="active">Cadastre-se</a>

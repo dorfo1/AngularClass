@@ -1,25 +1,49 @@
 <div>
-  <loading-component [show]="loading" ></loading-component>
+  <nav class="myNav bg-dark">
+    <h3>Projeto Angular</h3>
+    <img class="back-icon" src="../../../assets//icons/baseline_arrow_back_white_18dp.png" alt="logout"
+      (click)="onBack()">
+  </nav>
+  <h2 class="form-signin-heading">Cadastro Cliente</h2>
+  <loading-component [show]="loading"></loading-component>
+  <div class="wrapper">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-signin">
+      <label for="name">Nome</label>
+      <input type="text" placeholder="Nome" name="name" formControlName="name" class="form-control">
+      <label for="email">E-mail</label>
+      <input type="email" placeholder="Email" name="email" formControlName="email" class="form-control">
+      <label for="email">Idade</label>
+      <input type="number" placeholder="Idade" name="age" formControlName="age" class="form-control">
+      <label for="cpf">CPF</label>
+      <input type="number" placeholder="CPF" name="cpf" formControlName="cpf" class="form-control">
+      <label for="rua">Rua</label>
+      <input type="text" placeholder="Rua" name="rua" formControlName="rua" class="form-control">
+      <label for="rua">CEP</label>
+      <input type="number" placeholder="CEP" name="cep" formControlName="cep" class="form-control">
+      <label for="numero">Número</label>
+      <input type="number" placeholder="Número" name="numero" formControlName="numero" class="form-control">
+      <label for="complemento">Complemento</label>
+      <input type="text" placeholder="Complemento" name="complemento" formControlName="complemento"
+        class="form-control">
+      <div *ngIf="userForm.controls.name.invalid && userForm.controls.touched">campo é obrigatorio</div>
+      <button type="submit" [disabled]="!userForm.valid" class="btn-primary btn btn-block">
+        <ng-container *ngIf="userId; then alterar; else criar">
+        </ng-container>
+      </button>
 
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" >
-    <input type="text" placeholder="Nome" name="name" formControlName="name">
-    <input type="email" placeholder="Email" name="email" formControlName="email">
-    <input type="number" placeholder="Idade" name="age" formControlName="age">
-    <input type="tel" placeholder="Telefone" name="phone" formControlName="phone">
+    </form>
+  </div>
 
-    <div *ngIf="userForm.controls.name.invalid && userForm.controls.touched">campo é obrigatorio</div>
-  <button type="submit" [disabled]="!userForm.valid" >
-    <ng-container *ngIf="userId; then alterar; else criar">
-    </ng-container>
-  </button>
-  
-  </form>
 
-  <ng-template #criar> 
-      <span >Criar Usuario</span>
-  </ng-template >
-  <ng-template #alterar>
-      <span >Alterar Usuario</span>
+
+
+
+
+  <ng-template #criar>
+    <span>Criar Usuario</span>
   </ng-template>
-   
+  <ng-template #alterar>
+    <span>Alterar Usuario</span>
+  </ng-template>
+
 </div>
